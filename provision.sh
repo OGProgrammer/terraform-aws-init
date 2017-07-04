@@ -1,4 +1,6 @@
-export AWS_ACCESS_KEY_ID="anaccesskey"
-export AWS_SECRET_ACCESS_KEY="asecretkey"
-export AWS_DEFAULT_REGION="us-west-2"
+# Needed for Terraform AWS Provider {}
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+export AWS_DEFAULT_REGION=$(aws configure get region)
+
 terraform plan -var "ssh_key=$(cat ~/.ssh/id_rsa.pub)"
