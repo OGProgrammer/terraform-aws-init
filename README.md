@@ -4,9 +4,7 @@ This is your starting point for initializing your AWS infrastructure.
 
 I recommend cloning all the repos needed for this example by running the following:
 
-```
-bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init/master/clone-cd-example.sh)
-```
+`bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init/master/clone-cd-example.sh)`
 
 1. Log into the [AWS console](https://aws.amazon.com) and create an IAM user for you to use in your CLI.
 
