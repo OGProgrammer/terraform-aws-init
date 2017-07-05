@@ -19,31 +19,33 @@ resource "aws_key_pair" "root" {
 
 # A bucket for the s3 logs related to the actual terraform states bucket
 resource "aws_s3_bucket" "terraform-logs" {
-  bucket = "${var.region}-terraform-logs"
+  bucket = "terraform-states-logs-${var.region}"
   acl    = "log-delivery-write"
 
   tags {
-    Name = "${var.region}-terraform-logs"
+    Name = "terraform-states-logs-${var.region}"
     ManagedBy = "Terraform"
   }
 }
 
 # The main terraform states backet
 resource "aws_s3_bucket" "terraform-states" {
-  bucket = "${var.region}-terraform-states"
+  bucket = "terraform-states-${var.region}"
   acl    = "private"
 
+  # This is good for just incase the file gets corrupted or something bad.
   versioning {
     enabled = true
   }
 
+  # Send all S3 logs to another bucket
   logging {
     target_bucket = "${aws_s3_bucket.terraform-logs.id}"
-    target_prefix = "tf_states_log/"
+    target_prefix = "logs/"
   }
 
   tags {
-    Name = "${var.region}-terraform-states"
+    Name = "terraform-states-${var.region}"
     ManagedBy = "Terraform"
   }
 }

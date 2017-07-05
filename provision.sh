@@ -11,11 +11,11 @@ fi
 export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 export AWS_DEFAULT_REGION=$(aws configure get region)
-
+sshKeyContents=$(cat ~/.ssh/id_rsa.pub)
 #export TF_LOG=info
 
 echo "Executing terraform plan"
-if terraform plan -var "ssh_key=$(cat ~/.ssh/id_rsa.pub)" ; then
+if terraform plan -var "ssh_key=${sshKeyContents}" ; then
     echo "Terraform plan succeeded."
 else
     echo 'Error: terraform plan failed.' >&2
@@ -27,7 +27,7 @@ read input
 if [ "$input" == "yes" ]
 then
     echo "Executing terraform apply"
-    if terraform apply -var "ssh_key=$(cat ~/.ssh/id_rsa.pub)" ; then
+    if terraform apply -var "ssh_key=${sshKeyContents}" ; then
         echo "Terraform apply succeeded."
     else
         echo 'Error: terraform apply failed.' >&2
