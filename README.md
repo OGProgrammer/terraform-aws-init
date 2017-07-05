@@ -4,7 +4,13 @@ This is your starting point for initializing your AWS infrastructure.
 
 I recommend cloning all the repos needed for this example by running the following:
 
-`bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init/master/clone-cd-example.sh)`
+```
+bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init/master/clone-cd-example.sh)
+```
+
+---
+
+## Instructions
 
 1. Log into the [AWS console](https://aws.amazon.com) and create an IAM user for you to use in your CLI.
 
@@ -26,5 +32,7 @@ I recommend cloning all the repos needed for this example by running the followi
 
 10. You're all done! Congrats on nailing your first step.
 
+---
+ 
 On another note, to destroy these resources. Simple run the `destroy.sh` script to run a `terraform destroy`
 
