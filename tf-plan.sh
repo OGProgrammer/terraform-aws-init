@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-echo "Ensure your default ssh key is the one you want to use for the root key."
+echo "REPOSITORY: terraform-aws-init"
+echo "EXECUTING: terraform destroy"
+echo "NOTE: Ensure your default ssh key (~/.ssh/id_rsa.pub) is the one you want to use for the root key."
 
 echo "Checking for aws cli..."
 if ! [ -x "$(command -v aws)" ]; then
@@ -15,6 +17,7 @@ export AWS_DEFAULT_REGION=$(aws configure get region)
 # Get the contents of your ssh key
 sshKeyContents=$(cat ~/.ssh/id_rsa.pub)
 
+# Uncomment for verbose terraform output
 #export TF_LOG=info
 
 echo "Executing terraform plan"
@@ -26,15 +29,5 @@ else
 fi
 
 echo "Ensure you see your public key being added above."
-echo "Do you want to continue? (yes/no)"
-read input
-if [ "$input" == "yes" ]
-then
-    echo "Executing terraform apply"
-    if terraform apply -var "ssh_key=${sshKeyContents}" ; then
-        echo "Terraform apply succeeded."
-    else
-        echo 'Error: terraform apply failed.' >&2
-        exit 1
-    fi
-fi
+
+echo "done"

@@ -24,15 +24,22 @@ bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init
 
 6. Install [Terraform](https://www.terraform.io/downloads.html)
 
-7. Run `./provision.sh` to plan the terraform recipe. You should see `Plan: 6 to add, 0 to change, 0 to destroy.` and your ssh key being added.
+7. Run `./tf-plan.sh` to test the terraform recipe. You should see `Plan: 6 to add, 0 to change, 0 to destroy.` and your ssh key being added.
 
-8. Type `yes` and hit return to continue provisioning base things needed.
+8. Run `./tf-apply.sh` to deploy the base AWS resources you'll need for the rest of your infrastructure and services.
 
-9. Once terraform creates these things needed. Keep the `terraform.tfstate` & `terraform.tfstate.backup` file in a safe, centralized place.
+9. Once terraform creates these things needed. Keep the `terraform.tfstate` & `terraform.tfstate.backup` file in a safe place. This will be the only state file not stored in S3 since this is your base resources needed to store other terraform state files.
 
-10. You're all done! Congrats on nailing your first step.
+10. You're all done! Congrats on nailing your first step to creating your infrastructure.
 
 ---
  
-On another note, to destroy these resources. Simple run the `destroy.sh` script to run a `terraform destroy`
+On another note, to destroy these resources. Simply run the `./tf-destroy.sh` script to destroy what you've made.
 
+You may receive an error saying BucketNotEmpty when destroying this but please be sure you destroyed ALL other terraform infrastructure and services before you do because your literally killing off what holds all your terraform state files. 
+
+Carefully run the following command to empty the bucket out, then rerun the destroy script. Replace the region name if you changed it.
+
+```
+aws s3 rm s3://terraform-states-logs-us-west-2 --recursive
+```
