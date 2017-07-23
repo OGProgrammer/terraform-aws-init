@@ -43,3 +43,5 @@ Carefully run the following command to empty the bucket out, then rerun the dest
 ```
 aws s3 rm s3://terraform-states-logs-us-west-2 --recursive
 ```
+
+Side note, if you plan on doing more than one region; you'll need to break out the two s3 resources into a separate repository.
