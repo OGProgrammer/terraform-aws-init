@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 echo "REPOSITORY: terraform-aws-init"
-echo "EXECUTING: terraform destroy"
+echo "SCRIPT: tf-plan.sh"
+echo "EXECUTING: terraform plan"
 echo "NOTE: Ensure your default ssh key (~/.ssh/id_rsa.pub) is the one you want to use for the root key."
 
 echo "Checking for aws cli..."

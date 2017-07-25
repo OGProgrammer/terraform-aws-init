@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 echo "REPOSITORY: terraform-aws-init"
-echo "EXECUTING: terraform destroy"
+echo "SCRIPT: tf-apply.sh"
+echo "EXECUTING: terraform apply"
 
 echo "Checking for aws cli..."
 if ! [ -x "$(command -v aws)" ]; then
