@@ -3,6 +3,5 @@ variable "ssh_key" {
 }
 
 variable "region" {
-  default = "us-west-2"
-  description = "The main AWS region."
+  description = "The target AWS region."
 }
