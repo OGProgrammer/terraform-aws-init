@@ -1,3 +1,4 @@
+# Secret and key for AWS is set by env vars in bash scripts
 provider "aws" {
   region = "${var.region}"
 }
