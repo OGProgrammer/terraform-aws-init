@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "REPOSITORY: terraform-aws-init"
-echo "SCRIPT: tf-apply.sh"
+echo "SCRIPT: tf-apply.sh <region>"
 echo "EXECUTING: terraform apply"
 
 echo "Checking for aws cli..."

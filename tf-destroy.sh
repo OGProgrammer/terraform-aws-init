@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "REPOSITORY: terraform-aws-init"
-echo "SCRIPT: tf-destroy.sh"
+echo "SCRIPT: tf-destroy.sh <region>"
 echo "EXECUTING: terraform destroy"
 
 echo "Checking for aws cli..."
