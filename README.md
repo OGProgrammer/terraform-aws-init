@@ -10,6 +10,10 @@ bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init
 
 ---
 
+## Requirements
+
+* Terraform 0.9+
+
 ## Instructions
 
 1. Log into the [AWS console](https://aws.amazon.com) and create an IAM user for you to use in your CLI.
