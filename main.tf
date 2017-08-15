@@ -41,3 +41,14 @@ resource "aws_s3_bucket" "terraform-states" {
     ManagedBy = "Terraform"
   }
 }
+
+# A bucket for files to load onto our jenkins instance upon boot
+resource "aws_s3_bucket" "jenkins-files" {
+  bucket = "jenkins-files-${var.region}"
+  acl = "private"
+
+  tags {
+    Name = "jenkins-files-${var.region}"
+    ManagedBy = "Terraform"
+  }
+}
