@@ -32,6 +32,13 @@ fi
 export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
+# Clean out s3 buckets before calling terraform destroy to avoid error that buckets are not empty
+echo "Deleting everything in terraform/jenkins s3 buckets!"
+./empty-s3-bucket.sh terraform-states-${target_aws_region}
+aws s3 rm s3://terraform-states-logs-${target_aws_region} --recursive
+aws s3 rm s3://terraform-states-${target_aws_region} --recursive
+aws s3 rm s3://jenkins-files-${target_aws_region} --recursive
+
 # Get the contents of your ssh key
 sshKeyContents=$(cat ${public_key})
 

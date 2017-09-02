@@ -37,16 +37,11 @@ bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init
 10. You're all done! Congrats on nailing your first step to creating your infrastructure.
 
 ---
- 
-On another note, to destroy these resources. Simply run the `./tf-destroy.sh us-west-2` script to destroy what you've made.
 
-You may receive an error saying BucketNotEmpty when destroying this but please be sure you destroyed ALL other terraform infrastructure and services before you do because your literally killing off what holds all your terraform state files. 
+### Destroying 
+To destroy these resources, simply run the `./tf-destroy.sh us-west-2` script to destroy *EVERYTHING*. This includes your s3 buckets, state files, logs, etc.
 
-Carefully run the following command to empty the bucket out, then rerun the destroy script. Replace the region name if you changed it.
-
-```
-aws s3 rm s3://terraform-states-logs-us-west-2 --recursive
-```
+### Launching in more than one region
 
 If you plan on doing more than one region, clone this repo with the region suffixed. Ex. "terraform-aws-init-us-west-2"
 
