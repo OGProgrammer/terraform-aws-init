@@ -35,11 +35,15 @@ export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 # Get the contents of your ssh key
 sshKeyContents=$(cat ${public_key})
 
+# Export Terraform Variables
+export TF_VAR_region="${target_aws_region}"
+export TF_VAR_ssh_key="${sshKeyContents}"
+
 # Uncomment for verbose terraform output
 #export TF_LOG=info
 
-echo "terraform apply -var ssh_key=${sshKeyContents} -var region=${target_aws_region}"
-if terraform apply -var "ssh_key=${sshKeyContents}" -var "region=${target_aws_region}" ; then
+echo "terraform apply"
+if terraform apply ; then
     echo "Terraform apply succeeded."
 else
     echo 'Error: terraform apply failed.' >&2

@@ -32,14 +32,18 @@ fi
 export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
+# Export Terraform Variables
+export TF_VAR_region="${target_aws_region}"
+export TF_VAR_ssh_key="${sshKeyContents}"
+
 # Get the contents of your ssh key
 sshKeyContents=$(cat ${public_key})
 
 # Uncomment for verbose terraform output
 #export TF_LOG=info
 
-echo "terraform plan -var ssh_key=${sshKeyContents} -var region=${target_aws_region}"
-if terraform plan -var "ssh_key=${sshKeyContents}" -var "region=${target_aws_region}" ; then
+echo "terraform plan"
+if terraform plan ; then
     echo "Terraform plan succeeded."
 else
     echo 'Error: terraform plan failed.' >&2
