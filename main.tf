@@ -11,7 +11,7 @@ resource "aws_key_pair" "root" {
 
 # A bucket for the s3 logs related to the actual terraform states bucket
 resource "aws_s3_bucket" "terraform-logs" {
-  bucket = "terraform-states-logs-${var.region}"
+  bucket = "${var.s3prefix}-terraform-states-logs-${var.region}"
   acl = "log-delivery-write"
 
   tags {
@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "terraform-logs" {
 
 # The main terraform states backet
 resource "aws_s3_bucket" "terraform-states" {
-  bucket = "terraform-states-${var.region}"
+  bucket = "${var.s3prefix}-terraform-states-${var.region}"
   acl = "private"
 
   # This is good for just incase the file gets corrupted or something bad.
@@ -44,7 +44,7 @@ resource "aws_s3_bucket" "terraform-states" {
 
 # A bucket for files to load onto our jenkins instance upon boot
 resource "aws_s3_bucket" "jenkins-files" {
-  bucket = "jenkins-files-${var.region}"
+  bucket = "${var.s3prefix}-jenkins-files-${var.region}"
   acl = "private"
 
   tags {

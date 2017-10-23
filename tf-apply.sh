@@ -9,6 +9,9 @@ if ! [ -x "$(command -v aws)" ]; then
     exit 1
 fi
 
+#Download plugins
+terraform init
+
 # Set target aws region
 target_aws_region=$1
 if [ -z "$target_aws_region" ]; then
