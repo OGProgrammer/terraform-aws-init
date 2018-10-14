@@ -9,6 +9,12 @@ bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init
 
 ```
 
+This is apart of a Terraform+Jenkins+AWS+Docker Tutorial I give at conferences and private corporate events. This is a dev ops dream come true.
+
+Tutorial prep notes can be found on this [gist](https://gist.github.com/OGProgrammer/d07692840e01d5bab9d288f49daacc36)
+
+Slides can be found [here](https://docs.google.com/presentation/d/1KeZn1z-p2zWoeeI8hxI-B7DI1wkBDjSjXU5_k1OsjJM/edit?usp=sharing)
+
 ---
 
 ## Requirements
