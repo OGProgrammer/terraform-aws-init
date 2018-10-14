@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "terraform-logs" {
   acl = "log-delivery-write"
 
   tags {
-    Name = "terraform-states-logs-${var.region}"
+    Name = "${var.s3prefix}-terraform-states-logs-${var.region}"
     ManagedBy = "Terraform"
   }
 }
@@ -37,7 +37,7 @@ resource "aws_s3_bucket" "terraform-states" {
   }
 
   tags {
-    Name = "terraform-states-${var.region}"
+    Name = "${var.s3prefix}-terraform-states-${var.region}"
     ManagedBy = "Terraform"
   }
 }
@@ -48,7 +48,7 @@ resource "aws_s3_bucket" "jenkins-files" {
   acl = "private"
 
   tags {
-    Name = "jenkins-files-${var.region}"
+    Name = "${var.s3prefix}-jenkins-files-${var.region}"
     ManagedBy = "Terraform"
   }
 }

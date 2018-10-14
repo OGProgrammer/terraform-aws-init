@@ -29,21 +29,55 @@ bash <(curl -s https://raw.githubusercontent.com/OGProgrammer/terraform-aws-init
 
 6. Install [Terraform](https://www.terraform.io/downloads.html)
 
-7. Run `./tf-plan.sh us-west-2` to test it. You should see `Plan: 6 to add, 0 to change, 0 to destroy.` and your ssh key being added.
+7. Think of a unique string for an s3 prefix. Ex. "zcoe18". You'll be using this throughout the tutorial.
 
-8. Run `./tf-apply.sh us-west-2` to deploy the base AWS resources you'll need for the rest of your infrastructure and services.
+8. Drop into a terminal and run the terraform plan script. `./tf-plan.sh <s3prefix> <region>` Replace the s3 prefix with your unique string and provide a region or leave blank for us-west-2. Something like:
 
-9. Once terraform creates these things needed. Keep the `terraform.tfstate` & `terraform.tfstate.backup` file in a safe place. This will be the only state file not stored in S3 since this is your base resources needed to store other terraform state files.
+`./tf-plan.sh optimus-prime-87 us-west-2`
 
-10. You're all done! Congrats on nailing your first step to creating your infrastructure.
+You should see `Plan: 4 to add, 0 to change, 0 to destroy.` and your ssh key being added.
+
+9. Run `./tf-apply.sh <s3prefix> <region>` to deploy the base AWS resources you'll need for the rest of your infrastructure and services (like Jenkins).
+
+10. Once terraform creates these things needed. Keep the `terraform.tfstate` & `terraform.tfstate.backup` file in a safe place. This will be the only state file not stored in S3 since this is your base resources needed to store other terraform state files.
+
+11. You're all done! Congrats on nailing your first step to lay the foundation for your infrastructure with s3 buckets to store important config files. 
+
+Head over to the `terraform-aws-jenkins` repo [here](https://github.com/OGProgrammer/terraform-aws-jenkins) for the next step of this tutorial.
 
 ---
 
 ### Destroying 
-To destroy these resources, simply run the `./tf-destroy.sh us-west-2` script to destroy *EVERYTHING*. This includes your s3 buckets, state files, logs, etc.
+
+To destroy these resources, simply run the `./tf-destroy.sh <s3prefix> <region>` script with your s3 prefix and target region (or empty for us-west-2) to destroy *EVERYTHING*. This includes your s3 buckets, state files, logs, etc. Only do this if you've already destroyed the `terraform-aws-jenkins` repo from your AWS account and any other services you've wired up to this.
 
 ### Launching in more than one region
 
 If you plan on doing more than one region, clone this repo with the region suffixed. Ex. "terraform-aws-init-us-west-2"
 
 Otherwise, your existing tfstate file will clash with the first region you provisioned.
+
+Alternatively, you could start hard coding regions into your terraform recipe to hand craft your root s3 buckets.
+
+```
+Built & Maintained by @OGProgrammer
+
+Support Your Local User Groups
+http://php.ug/
+
+Check out our PHP UG in Las Vegas, NV
+http://PHPVegas.com
+
+Support your local tech scene!
+#VegasTech
+
+Share your knowledge!
+Become a speaker, co-organizer, at your local user groups.
+Contribute to your favorite open source packages (even if its a README ;)
+
+Thank you! ☺
+
+-Josh
+
+Paid support and training services available at http://RemoteDevForce.com
+```

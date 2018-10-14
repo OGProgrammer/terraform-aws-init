@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
+echo "SCRIPT: empty-s3-bucket <bucket>"
+echo "EXECUTING: empty-s3-bucket"
+
+echo "Checking for aws cli..."
+if ! [ -x "$(command -v aws)" ]; then
+    echo 'Error: aws cli is not installed.' >&2
+    exit 1
+fi
 
 bucket=$1
+if [ -z "$bucket" ]; then
+    echo "A bucket must be provided! Failing out."
+    exit 1
+fi
 
 set -e
 
